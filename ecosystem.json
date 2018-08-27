@@ -1,0 +1,28 @@
+{
+	"apps": [
+		{
+			"name": "eleme",
+			"env": {
+				"COMMON_VARIABLE": "true"
+			},
+			"env_production": {
+				"NODE_ENV": "production"
+			}
+		}
+	],
+	"deploy": {
+		"production": {
+			"user": "ubuntu",
+			"host": ["118.89.39.58"],
+			"port": "1994",
+			"ref": "origin/master",
+			"repo": "git@gitee.com:yang530/eleme.git",
+			"path": "~/project/pm2_deploy/eleme",
+			"post-deploy": "npm --registry=https://registry.npm.taobao.org install && npm run build && rm -rf ~/html/eleme && mv dist ~/html/eleme",
+			"ssh_options": "StrictHostKeyChecking=no",
+			"env": {
+				"NODE_ENV": "production"
+			}
+		}
+	}
+}
